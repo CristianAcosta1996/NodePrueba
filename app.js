@@ -1,36 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 
+const port = process.env.PORT;
+
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.send("Hello world!");
+app.use("/hello", (req, res) => {
+  res.send("Hola mundo!!!");
 });
 
-app.listen(3000, () => {
-  console.log("Escuchando en el puerto 3000");
+app.listen(port, () => {
+  console.log(`Escuchando en el puerto ${port}`);
 });
-
-/* const http = require("http");
-const fs = require("fs");
-const path = require("path");
-
-const server = http.createServer((req, res) => {
-  const filePath = path.join(__dirname, "index.html");
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      res.writeHead(500, {
-        "Content-Type": "text/plain",
-      });
-      res.end("Error al leer el archivo index.html");
-      return;
-    }
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(content);
-  });
-});
-
-server.listen("8080", "127.0.0.1", () => {
-  console.log("Escuchando en el puerto 8080");
-});
- */
